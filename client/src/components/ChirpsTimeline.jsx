@@ -11,9 +11,20 @@ class ChirpTimeline extends Component {
 
     async componentDidMount() {
         try {
-            let res = fetch('/api/chirps')
-            let chirps = await JSON.parse(res);
-            this.setState({ chirps: chirps })
+            let res = await fetch('/api/chirps')
+            let data = await res.json();
+            let chirpArray = Object.keys(data).map(key => {
+                return{
+                    id: key,
+                    username: data[key].username,
+                    chirp: data[key].chirp
+                }
+                
+            })
+            chirpArray.pop();
+            this.setState({
+                chirps: chirpArray
+            });
         } catch (e) {
             console.log(e)
         }
@@ -21,7 +32,8 @@ class ChirpTimeline extends Component {
 
     returnCards() {
         return (
-            Object.keys(this.state.chirps).map((chirp) => { 
+            this.state.chirps.map((chirp) => {
+                console.log(chirp)
                 return (
                     <ChirpCard chirp={chirp} key={chirp.id} />
                 )

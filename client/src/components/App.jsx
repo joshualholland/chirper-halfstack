@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import Form from './Form';
 import SingleChirp from './SingleChirp';
 import ChirpTimeline from './ChirpsTimeline';
+import EditChirp from './EditChip'
 
 
 
@@ -20,6 +21,7 @@ class App extends Component {
               <Route exact path='/' component={ChirpTimeline}/>
               <Route exact path='/form' component={Form} />
               <Route exact path='/chirp/:id' component={SingleChirp} />
+              <Route exact path='/edit/:id' component={EditChirp} />
             </Switch>
           </>
           
