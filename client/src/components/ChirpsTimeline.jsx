@@ -13,11 +13,11 @@ class ChirpTimeline extends Component {
         try {
             let res = await fetch('/api/chirps')
             let data = await res.json();
-            let chirpArray = Object.keys(data).map(key => {
+            let chirpArray = data.map(key => {
                 return{
-                    id: key,
-                    username: data[key].username,
-                    chirp: data[key].chirp
+                    id: key.id,
+                    username: key.name,
+                    chirp: key.text
                 }
                 
             })

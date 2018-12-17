@@ -1,31 +1,39 @@
 import { Router } from 'express';
-import chirpsStore from '../chirpstore';
+import { getChirps, getChirp, addChirp, editChirp, deleteChirp } from '../db';
 
 let router = Router();
 
 router.get('/:id?', (req, res) => {
-    let id = req.params.id
+    let id = req.params.id;
     if (id) {
-        res.json(chirpsStore.GetChirp(id))
+        getChirp(id)
+            .then(results => res.send(results))
+            .catch(e => console.log(e))
     } else {
-        res.send(chirpsStore.GetChirps())
+        getChirps()
+            .then(results => res.send(results))
+            .catch(e => console.log(e))
     }
-
 });
 
 router.post('/', (req, res) => {
-    chirpsStore.CreateChirp(req.body)
-    res.send(chirpsStore.GetChirps());
+    addChirp(req.body)
+        .then(results => res.send(results))
+        .catch(e => console.log(e));
 });
 
 router.put('/:id?', (req, res) => {
-    chirpsStore.UpdateChirp(req.params.id, req.body)
-    res.send(chirpsStore.GetChirps());
+    let id = req.params.id;
+    editChirp(req.body, id)
+        .then(results => res.send(results))
+        .catch(e => console.log(e))
 });
 
 router.delete('/:id?', (req, res) => {
-    chirpsStore.DeleteChirp(req.params.id)
-    res.send('deleted')
-})
+    let id = req.params.id;
+    deleteChirp(id)
+        .then(results => res.send(results))
+        .catch(e => console.log(e))
+});
 
 export default router;

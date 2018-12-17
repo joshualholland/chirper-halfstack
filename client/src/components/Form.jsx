@@ -4,8 +4,8 @@ class Form extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            chirp: '',
-            username: '',
+            userid: '',
+            text: '',
         }
     }
 
@@ -36,16 +36,16 @@ class Form extends Component {
                             <input
                                 className="form-control text-center"
                                 placeholder="Who's Chirpin'?"
-                                onChange={(e) => this.setState({ username: e.target.value })}
-                                value={this.state.username} />
+                                onChange={(e) => this.setState({ userid: parseInt(e.target.value) })}
+                                value={this.state.userid} />
                         </div>
                         <div className="form-group text-center">
                             <label className='text-success'>Chirp It!!!</label>
                             <input
                                 className="form-control text-center"
                                 placeholder="What've you got to say?"
-                                onChange={(e) => this.setState({ chirp: e.target.value })}
-                                value={this.state.chirp} />
+                                onChange={(e) => this.setState({ text: e.target.value })}
+                                value={this.state.text} />
                         </div>
                         <div className='col-12 text-center'>
                             <button type="submit" className="btn btn-success align-self-center" onClick={(e) => this.handleSubmit(e)}>Chirp</button>

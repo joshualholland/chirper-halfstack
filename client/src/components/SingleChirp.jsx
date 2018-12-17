@@ -37,12 +37,14 @@ class SingleChirp extends Component {
     render() {
         return (
             <div className="col-md-12">
-                <div className="card text-success bg-secondary m-1 p-1 border-dark">
-                    <div className="card-header text-center">{this.state.chirp.username} chirped:</div>
-                    <h1 className='text-center'>{this.state.chirp.chirp}</h1>
-                    <button className="btn btn-sm btn-danger" onClick={() => this.deleteChirp()}>Delete Chirp</button>
-                    <Link className="btn btn-sm btn-success" to={`/edit/${this.props.match.params.id}`}>Edit Chirp</Link>
-                    <Link className="btn btn-sm btn-primary" to='/'>Back To all chirps</Link>
+                <div className="card text-success bg-light m-1 p-1 border-dark">
+                    <div className="card-header text-center">{this.state.chirp.name} chirped:</div>
+                    <h1 className='text-center'>{this.state.chirp.text}</h1>
+                    <div className="links mx-auto" style={{float: 'left'}}>
+                        <button className="btn btn-outline-danger btn-sm" onClick={() => this.deleteChirp()}>Delete Chirp</button>
+                        <Link className="btn btn-sm btn-outline-success m-3" to={`/edit/${this.props.match.params.id}`}>Edit Chirp</Link>
+                        <Link className="btn btn-sm btn-outline-primary" to='/'>Back To all chirps</Link>
+                    </div>
                 </div>
             </div>
         )

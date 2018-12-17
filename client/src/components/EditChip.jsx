@@ -5,7 +5,7 @@ class EditChirp extends Component {
         super(props)
         this.state = {
             username: '',
-            chirp: ''
+            text: '',
         }
     }
 
@@ -14,8 +14,8 @@ class EditChirp extends Component {
             let res = await fetch(`/api/chirps/${this.props.match.params.id}`)
             let data = await res.json();
             this.setState({
-                username: data.username,
-                chirp: data.chirp
+                username: data.name,
+                text: data.text,
             })
             console.log(data)
         } catch (e) {
@@ -49,7 +49,7 @@ class EditChirp extends Component {
                     </div>
                     <div className="form-group">
                         <label>Chirp:</label>
-                        <input type="text" className="form-control" placeholder="Chirp It Here" value={this.state.chirp} onChange={(e) => this.setState({ chirp: e.target.value })} />
+                        <input type="text" className="form-control" placeholder="Chirp It Here" value={this.state.text} onChange={(e) => this.setState({ text: e.target.value })} />
                     </div>
                     <button type="submit" className="btn btn-dark" onClick={(e) => this.handleEdit(e)}>Edit</button>
                 </form>
